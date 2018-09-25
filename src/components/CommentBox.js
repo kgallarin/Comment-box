@@ -1,23 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import requireAuth from 'components/requireAuth'
 import * as actions from 'actions'
 
 class CommentBox extends Component {
   state = {
     comment: ''
-  }
-  componentDidMount () {
-    this.shouldNavigateAway()
-  }
-  componentDidUpdate() {
-    this.shouldNavigateAway()
-  }
-  shouldNavigateAway = () => {
-    const { auth } = this.props
-    if(!auth){
-      console.log('i need to leave')
-      this.props.history.push('/')
-    }
   }
   handleChange = (e) => {
     this.setState({ comment: e.target.value })
@@ -47,11 +35,4 @@ class CommentBox extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { auth } = state
-  return {
-    auth
-  }
-}
-
-export default connect(mapStateToProps,actions)(CommentBox)
+export default connect(null,actions)(requireAuth(CommentBox))

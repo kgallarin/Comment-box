@@ -1,13 +1,13 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
-import reduxPromise from 'redux-promise'
+import async from 'middlewares/async'
 import reduxThunk from 'redux-thunk'
 import reduxLogger from 'redux-logger'
 import reducers from 'reducers'
 
 let composeEnhancers = compose;
-let middlewares = [reduxThunk,reduxPromise]
+let middlewares = [reduxThunk,async]
 
 if(process.env.NODE_ENV !== 'production'){
   const logger = reduxLogger
